@@ -1,6 +1,6 @@
 package thirdparty.paymentgateway;
 
-public interface    TicketPaymentService {
+public interface TicketPaymentService {
 
     void makePayment(long accountId, int totalAmountToPay);
 

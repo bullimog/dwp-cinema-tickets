@@ -34,13 +34,15 @@ public class TicketServiceImpl implements TicketService {
         ticketTypeRequestHelper.validateTicketTypes(ticketTypeRequests);
         Map<TicketTypeRequest.Type, Integer> ticketCounts =
                 ticketTypeRequestHelper.getTicketRequestCounts(ticketTypeRequests);
-        ticketPaymentService.makePayment(accountId, calculateTicketRequestTotalPrice(ticketCounts));
-        seatReservationService.reserveSeat(accountId, calculateTotalSeatsRequired(ticketCounts));
+        ticketPaymentService.makePayment(accountId,
+                calculateTicketRequestTotalPrice(ticketCounts));
+        seatReservationService.reserveSeat(accountId,
+                calculateTotalSeatsRequired(ticketCounts));
     }
 
 
     /**
-     * Validates the given accouintId.
+     * Validates the given accountId.
      *
      * @param accountId - the accountId to validate.
      * @Throws InvalidPurchaseException if account id is invalid.
@@ -59,7 +61,8 @@ public class TicketServiceImpl implements TicketService {
      * @param ticketCounts A Map of Ticket Types mapped to the quantity requested.
      * @return Total price of all tickets requests.
      */
-    private int calculateTicketRequestTotalPrice(Map<TicketTypeRequest.Type, Integer> ticketCounts) {
+    private int calculateTicketRequestTotalPrice(
+            Map<TicketTypeRequest.Type, Integer> ticketCounts) {
 
         return ticketCounts.keySet().stream()
                 .map(ticketType ->
